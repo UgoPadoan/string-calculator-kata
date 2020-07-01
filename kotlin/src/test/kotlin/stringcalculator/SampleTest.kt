@@ -16,6 +16,11 @@ class SampleTest {
 
         assertEquals(1, result)
     }
+    @Test
+    fun `string calculator with two numbers`() {
+        val result = StringCalculator().add("1,2")
 
+        assertEquals(3, result)
+    }
     
 }
