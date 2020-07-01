@@ -3,25 +3,21 @@ package stringcalculator
 object StringCalculator {
     fun sum(delimiterSeparatedNumbers: String): Int {
 
-        val (delimiter, stringOfNumbers) = FOO(delimiterSeparatedNumbers)
+        var delimiter = "\n,"
+        var stringOfNumbers = delimiterSeparatedNumbers
+
+
+        if (delimiterSeparatedNumbers.startsWith(delimiterPrefix)) {
+            delimiter = delimiterSeparatedNumbers.substringBetween(delimiterPrefix, delimiterPostfix)
+            stringOfNumbers = delimiterSeparatedNumbers.substringAfter(delimiterPostfix)
+        }
+
         val numbers = stringOfNumbers.mapToIntegers(delimiter)
 
         if (numbers.any { it < 0 })
             throw Exception("negatives not allowed")
 
         return numbers.sum()
-    }
-
-    private fun FOO(delimiterSeparatedNumbers: String): Pair<String, String> {
-        val delimiter = "\n,"
-        val stringOfNumbers = delimiterSeparatedNumbers
-
-        return if (delimiterSeparatedNumbers.startsWith(delimiterPrefix)) {
-            Pair(
-                    delimiterSeparatedNumbers.substringBetween(delimiterPrefix, delimiterPostfix),
-                    delimiterSeparatedNumbers.substringAfter(delimiterPostfix)
-            )
-        } else Pair(delimiter, stringOfNumbers)
     }
 
 }
