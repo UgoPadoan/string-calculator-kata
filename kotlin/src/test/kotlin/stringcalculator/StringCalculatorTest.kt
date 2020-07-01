@@ -21,7 +21,7 @@ class StringCalculatorTest {
         assertEquals(1, sum)
     }
 
-    @Test @Ignore
+    @Test
     fun `two numbers sum should return the sum of the two numbers`() {
         val sum: Int = StringCalculator.sum("1,2")
 
