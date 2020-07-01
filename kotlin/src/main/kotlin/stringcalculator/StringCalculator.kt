@@ -8,6 +8,12 @@ class StringCalculator {
     }
 
     private fun sum(numbers: String): Int {
-        return numbers.split(",", "\n").sumBy { it.toInt() }
+        if (numbers.startsWith("//")) {
+            var delimeter = numbers.removePrefix("//").split("\n").first()
+            var numbersPart = numbers.removePrefix("//").split("\n").last()
+            return numbersPart.split(delimeter).sumBy { it.toInt() }
+        }
+        else
+            return numbers.split(",", "\n").sumBy { it.toInt() }
     }
 }

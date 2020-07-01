@@ -38,4 +38,11 @@ class SampleTest {
         assertEquals(6, result)
     }
 
+    @Test
+    fun `string calculator with custom delimeters`() {
+        val result = StringCalculator().add("//;\n1;2;3")
+
+        assertEquals(6, result)
+    }
+
 }
