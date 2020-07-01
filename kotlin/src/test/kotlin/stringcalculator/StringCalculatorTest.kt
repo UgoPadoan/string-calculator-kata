@@ -1,7 +1,6 @@
 package stringcalculator
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Ignore
 import org.junit.Test
 
@@ -43,4 +42,12 @@ class StringCalculatorTest {
         assertEquals(3, sum)
     }
 
+    @Test
+    fun `any negative number should throw an exception`() {
+        try {
+            StringCalculator.sum("-2")
+            fail()
+        } catch (e: Exception) {
+        }
+    }
 }
