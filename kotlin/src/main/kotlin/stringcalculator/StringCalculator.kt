@@ -6,15 +6,20 @@ object StringCalculator {
         var delimiter = "\n,"
         var numbers = commaSeparatedNumbers;
 
-        if (commaSeparatedNumbers.startsWith("//")){
-            delimiter = commaSeparatedNumbers.substring(2, commaSeparatedNumbers.indexOf("\n"))
-            numbers = commaSeparatedNumbers.substringAfter("\n")
+
+        if (commaSeparatedNumbers.startsWith(delimiterPrefix)){
+            delimiter = commaSeparatedNumbers.substringBefore(delimiterPostFix).substringAfter(delimiterPrefix)
+            numbers = commaSeparatedNumbers.substringAfter(delimiterPostFix)
         }
 
         return numbers
                 .split("[${delimiter}]".toRegex())
                 .filterNot { it.isEmpty() }
                 .sumBy { it.toInt() }
+
     }
 
 }
+
+private const val delimiterPrefix = "//"
+private const val delimiterPostFix = "\n"
