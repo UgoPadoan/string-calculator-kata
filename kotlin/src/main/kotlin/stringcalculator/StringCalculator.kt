@@ -12,15 +12,20 @@ object StringCalculator {
             stringOfNumbers = delimiterSeparatedNumbers.substringAfter(delimiterPostfix)
         }
 
-        val numbers = stringOfNumbers
-                .split("[${delimiter}]".toRegex())
-                .filterNot { it.isEmpty() }
-                .map { it.toInt() }
+        val numbers = stringOfNumbers.mapToIntegers(delimiter)
+
         if (numbers.any { it < 0 })
-            throw Exception()
+            throw Exception("negatives not allowed")
+
         return numbers.sum()
     }
 
+}
+
+private fun String.mapToIntegers(delimiter: String): List<Int> {
+    return split("[${delimiter}]".toRegex())
+            .filterNot { it.isEmpty() }
+            .map { it.toInt() }
 }
 
 private const val delimiterPrefix = "//"

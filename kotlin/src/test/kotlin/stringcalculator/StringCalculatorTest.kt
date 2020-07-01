@@ -48,6 +48,7 @@ class StringCalculatorTest {
             StringCalculator.sum("-2")
             fail()
         } catch (e: Exception) {
+            assertEquals("negatives not allowed", e.message)
         }
     }
 }
