@@ -52,18 +52,18 @@ class SampleTest {
             StringCalculator().add("1,4,-1")
             fail("expected exception here")
         } catch (exception: NegativesNotAllowedException) {
-            assertEquals("negatives not allowed", exception.message)
+            assertEquals("negatives not allowed: -1", exception.message)
         }
 
     }
 
     @Test
-    fun `throws exception with negative number 5`() {
+    fun `throws exception with multiple negative numbers`() {
         try {
-            StringCalculator().add("1,4,-5")
+            StringCalculator().add("1,4,-5,-9")
             fail("expected exception here")
         } catch (exception: NegativesNotAllowedException) {
-            assertEquals("negatives not allowed", exception.message)
+            assertEquals("negatives not allowed: -5,-9", exception.message)
         }
 
     }
