@@ -16,12 +16,13 @@ class StringCalculator {
             sum(numbers, "[,\n]".toRegex())
     }
 
-    private fun sum(numbers: String, delimiter : Regex): Int {
-        val negativeNumbers = numbers.split(delimiter).filter { it.isNegative() }
+    private fun sum(input: String, delimiter : Regex): Int {
+        val numbers = input.split(delimiter)
+        val negativeNumbers = numbers.filter { it.isNegative() }
         if (negativeNumbers.isNotEmpty()){
             throw NegativesNotAllowedException("negatives not allowed: " + negativeNumbers.joinToString(","))
         }
-        return numbers.split(delimiter).sumBy { it.toInt() }
+        return numbers.sumBy { it.toInt() }
     }
 
     private fun String.isNegative() = toInt() < 0
