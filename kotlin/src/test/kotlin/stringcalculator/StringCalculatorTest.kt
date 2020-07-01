@@ -22,9 +22,18 @@ class StringCalculatorTest {
     }
 
     @Test
-    fun `two numbers sum should return the sum of the two numbers`() {
-        val sum: Int = StringCalculator.sum("1,2")
+    fun `any numbers quantity sum should return the sum of the numbers`() {
+        val sum: Int = StringCalculator.sum("1,2,3")
 
-        assertEquals(3, sum)
+        assertEquals(6, sum)
     }
+
+
+    @Test
+    fun `check sum with any type of separator (new line or comma)`() {
+        val sum: Int = StringCalculator.sum("1\n2,3")
+
+        assertEquals(6, sum)
+    }
+
 }
