@@ -38,4 +38,17 @@ class SampleTest {
         assertEquals(6, result)
     }
 
+    @Test
+    fun `string calculator with different delimiter`() {
+        val result = StringCalculator().add("//;\n1;2")
+
+        assertEquals(3, result)
+    }
+
+    @Test
+    fun `string calculator with different delimiter with three numbers`() {
+        val result = StringCalculator().add("//;\n1;2;4")
+
+        assertEquals(7, result)
+    }
 }
