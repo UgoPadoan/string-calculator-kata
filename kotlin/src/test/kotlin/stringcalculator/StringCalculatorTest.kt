@@ -36,4 +36,11 @@ class StringCalculatorTest {
         assertEquals(6, sum)
     }
 
+    @Test
+    fun `should return sum when delimiter is semicolon`() {
+        val sum: Int = StringCalculator.sum("//;\n1;2")
+
+        assertEquals(3, sum)
+    }
+
 }
