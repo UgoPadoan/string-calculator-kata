@@ -24,4 +24,18 @@ class SampleTest {
         assertEquals(3, result)
     }
 
+    @Test
+    fun `string calculator with three numbers`() {
+        val result = StringCalculator().add("1,2,3")
+
+        assertEquals(6, result)
+    }
+
+    @Test
+    fun `string calculator with new line`() {
+        val result = StringCalculator().add("1\n2,3")
+
+        assertEquals(6, result)
+    }
+
 }
