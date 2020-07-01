@@ -3,8 +3,16 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+<<<<<<< HEAD
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/kotlin" />
+=======
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/kotlin" />
+        <option name="gradleJvm" value="openjdk-14" />
+>>>>>>> ab76017526f4e55fa7631e27be61650f990dd0ac
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/kotlin" />
