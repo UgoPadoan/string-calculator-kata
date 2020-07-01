@@ -8,12 +8,13 @@ class StringCalculator {
     }
 
     private fun sum(numbers: String): Int {
-        if (numbers.startsWith("//")) {
-            var delimeter = numbers.removePrefix("//").split("\n").first()
-            var numbersPart = numbers.removePrefix("//").split("\n").last()
-            return numbersPart.split(delimeter).sumBy { it.toInt() }
+        return if (numbers.startsWith("//")) {
+            val (delimiter, numbersPart) = numbers.removePrefix("//").split("\n")
+            sum(numbersPart, delimiter.toRegex())
         }
         else
-            return numbers.split(",", "\n").sumBy { it.toInt() }
+            sum(numbers, "[,\n]".toRegex())
     }
+
+    private fun sum(numbers: String, delimiter : Regex) = numbers.split(delimiter).sumBy { it.toInt() }
 }
