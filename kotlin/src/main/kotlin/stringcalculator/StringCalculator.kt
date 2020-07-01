@@ -2,11 +2,10 @@ package stringcalculator
 
 object StringCalculator {
     fun sum(commaSeparatedNumbers: String): Int {
-        if(commaSeparatedNumbers.isEmpty()){
-            return 0
-        }
-
-        return commaSeparatedNumbers.split(",").sumBy { it.toInt() }
+        return commaSeparatedNumbers
+                .split(",")
+                .filterNot { it.isEmpty() }
+                .sumBy { it.toInt() }
     }
 
 }
