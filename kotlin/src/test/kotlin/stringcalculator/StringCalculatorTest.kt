@@ -2,6 +2,7 @@ package stringcalculator
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import org.junit.Ignore
 import org.junit.Test
 
 class StringCalculatorTest {
@@ -18,5 +19,12 @@ class StringCalculatorTest {
         val sum: Int = StringCalculator.sum("1")
 
         assertEquals(1, sum)
+    }
+
+    @Test @Ignore
+    fun `two numbers sum should return the sum of the two numbers`() {
+        val sum: Int = StringCalculator.sum("1,2")
+
+        assertEquals(3, sum)
     }
 }
