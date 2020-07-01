@@ -8,7 +8,7 @@ object StringCalculator {
 
 
         if (delimiterSeparatedNumbers.startsWith(delimiterPrefix)) {
-            delimiter = delimiterSeparatedNumbers.substringBefore(delimiterPostfix).substringAfter(delimiterPrefix)
+            delimiter = delimiterSeparatedNumbers.substringBetween(delimiterPrefix, delimiterPostfix)
             stringOfNumbers = delimiterSeparatedNumbers.substringAfter(delimiterPostfix)
         }
 
@@ -21,6 +21,9 @@ object StringCalculator {
     }
 
 }
+
+private fun String.substringBetween(from: String, to: String) =
+        substringAfter(from).substringBefore(to)
 
 private fun String.mapToIntegers(delimiter: String): List<Int> {
     return split("[${delimiter}]".toRegex())
