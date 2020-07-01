@@ -6,14 +6,7 @@ object StringCalculator {
             return 0
         }
 
-        val numbers = commaSeparatedNumbers.split(",")
-        var sum = 0
-
-        for(number in numbers){
-            sum += number.toInt()
-        }
-
-        return sum
+        return commaSeparatedNumbers.split(",").sumBy { it.toInt() }
     }
 
 }
