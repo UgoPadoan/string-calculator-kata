@@ -43,12 +43,28 @@ class StringCalculatorTest {
     }
 
     @Test
+    fun `check big numbers skipping (greater than 1000)`() {
+        val sum: Int = StringCalculator.sum("1,1000,1001")
+
+        assertEquals(1001, sum)
+    }
+
+    @Test
     fun `any negative number should throw an exception`() {
         try {
             StringCalculator.sum("-2")
             fail()
+        } catch (e: Exception) { }
+    }
+
+    @Test
+    fun `any negative number should throw an exception containing the number`() {
+        try {
+            StringCalculator.sum("-2,-1,3")
+            fail()
         } catch (e: Exception) {
-            assertEquals("negatives not allowed", e.message)
+            assertEquals("negatives not allowed: -2,-1", e.message)
         }
     }
+
 }

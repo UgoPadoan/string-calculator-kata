@@ -12,15 +12,16 @@ object StringCalculator {
             stringOfNumbers = delimiterSeparatedNumbers.substringAfter(delimiterPostfix)
         }
 
-        val numbers = stringOfNumbers.mapToIntegers(delimiter)
+        val numbers = stringOfNumbers.mapToIntegers(delimiter).filterNot { it > 1000 }
 
         if (numbers.any { it < 0 })
-            throw Exception("negatives not allowed")
+            throw Exception("negatives not allowed: ${numbers.negativeNumbers().joinToString(",")}")
 
         return numbers.sum()
     }
-
 }
+
+private fun List<Int>.negativeNumbers() = filter { it < 0 }
 
 private fun String.substringBetween(from: String, to: String) =
         substringAfter(from).substringBefore(to)
