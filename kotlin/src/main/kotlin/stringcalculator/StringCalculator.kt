@@ -16,5 +16,10 @@ class StringCalculator {
             sum(numbers, "[,\n]".toRegex())
     }
 
-    private fun sum(numbers: String, delimiter : Regex) = numbers.split(delimiter).sumBy { it.toInt() }
+    private fun sum(numbers: String, delimiter : Regex) = numbers.split(delimiter).sumBy {
+        if(it.isNegative()) throw NegativesNotAllowedException("negatives not allowed")
+        it.toInt()
+    }
+
+    private fun String.isNegative() = toInt() < 0
 }

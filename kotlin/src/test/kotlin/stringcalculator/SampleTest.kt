@@ -1,6 +1,7 @@
 package stringcalculator
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.fail
 import org.junit.Test
 
 class SampleTest {
@@ -45,4 +46,25 @@ class SampleTest {
         assertEquals(6, result)
     }
 
+    @Test
+    fun `throws exception with negative number`() {
+        try {
+            StringCalculator().add("1,4,-1")
+            fail("expected exception here")
+        } catch (exception: NegativesNotAllowedException) {
+            assertEquals("negatives not allowed", exception.message)
+        }
+
+    }
+
+    @Test
+    fun `throws exception with negative number 5`() {
+        try {
+            StringCalculator().add("1,4,-5")
+            fail("expected exception here")
+        } catch (exception: NegativesNotAllowedException) {
+            assertEquals("negatives not allowed", exception.message)
+        }
+
+    }
 }
