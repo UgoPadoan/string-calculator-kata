@@ -43,6 +43,13 @@ class StringCalculatorTest {
     }
 
     @Test
+    fun `should return sum when delimiter is with custom length`() {
+        val sum: Int = StringCalculator.sum("//***\n1***2")
+
+        assertEquals(3, sum)
+    }
+
+    @Test
     fun `check big numbers skipping (greater than 1000)`() {
         val sum: Int = StringCalculator.sum("1,1000,1001")
 
