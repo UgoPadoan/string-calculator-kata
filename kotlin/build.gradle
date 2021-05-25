@@ -15,5 +15,5 @@ dependencies {
 }
 
 application {
-    mainClassName = 'kotlin.AppKt'
+    mainClassName = 'stringcalculator.AppKt'
 }
