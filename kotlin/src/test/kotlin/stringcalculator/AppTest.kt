@@ -39,9 +39,9 @@ class AppTest {
     }
 
     @Test
-    fun testAddPair() {
-        assertEquals(3, Pair("1;2", arrayOf(";")).add())
-        assertEquals(4, Pair("1:3", arrayOf(":")).add())
+    fun testPairParseNumbers() {
+        assertEquals(listOf(1, 2), Pair("1;2", arrayOf(";")).parseNumbers())
+        assertEquals(listOf(1, 3), Pair("1:3", arrayOf(":")).parseNumbers())
     }
 
     @Test
