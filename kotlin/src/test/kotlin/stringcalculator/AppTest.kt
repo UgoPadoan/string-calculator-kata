@@ -1,39 +1,55 @@
 package stringcalculator
 
-import org.junit.Assert.assertTrue
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertArrayEquals
+
 import org.junit.Test
 
 class AppTest {
 
     @Test
     fun testAddEmptyString() {
-        assert(add("") == 0)
+        assertEquals(0, add(""))
     }
 
     @Test
     fun testAddWithOnlyANumber() {
-        assert(add("1") == 1)
+        assertEquals(1, add("1"))
     }
 
     @Test
     fun testAddWithMultipleNumbers() {
-        assert(add("1,2") == 3)
+        assertEquals(3, add("1,2"))
     }
 
     @Test
     fun testAddWithMultipleNumbersJoinedByNewLinesAndComas() {
-        assert(add("1\n2,3") == 6)
+        assertEquals(6, add("1\n2,3"))
+    }
+
+    @Test
+    fun testSupportUserDefinedDelimiters() {
+         assertEquals(3, add("//;\n1;2"))
     }
 
     @Test
     fun testReadUserDefinedDelimiter() {
-        assert("//;\n1;2".readUserDefinedDelimiter() == Pair("1;2", ";") )
-        assert("//:\n1:2".readUserDefinedDelimiter() == Pair("1:2", ":") )
+        assertEquals(Pair("1;2", ";"), "//;\n1;2".readUserDefinedDelimiter())
+        assertEquals(Pair("1:2", ":"), "//:\n1:2".readUserDefinedDelimiter())
     }
 
     @Test
     fun testAddPair() {
-        assert(Pair("1;2", arrayOf(";")).add() == 3 )
-        assert(Pair("1:3", arrayOf(":")).add() == 4 )
+        assertEquals(3, Pair("1;2", arrayOf(";")).add())
+        assertEquals(4, Pair("1:3", arrayOf(":")).add())
+    }
+
+    @Test
+    fun testMergeUserAndDefaultDelimiters() {
+        assertEquals("1;2", Pair("1;2", ";").addDefaultDelimiters().first)
+        assertArrayEquals(delimiters + ";", Pair("1;2", ";").addDefaultDelimiters().second)
+
+        assertEquals("1;3", Pair("1;3", ":").addDefaultDelimiters().first)
+        assertArrayEquals(delimiters + ":", Pair("1;3", ":").addDefaultDelimiters().second)
     }
 }
