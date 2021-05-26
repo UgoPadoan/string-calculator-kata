@@ -1,6 +1,7 @@
 package stringcalculator
 
 val defaultDelimiter = ","
+val maxIntAllowed = 1000
 val delimiters = arrayOf(defaultDelimiter, "\n")
 
 fun add(s: String): Int = 
@@ -9,6 +10,7 @@ fun add(s: String): Int =
   .addDefaultDelimiters()
   .parseNumbers()
   .checkNotNegative()
+  .filter { it <= maxIntAllowed}
   .sum()
 
 fun String.readUserDefinedDelimiter(): Pair<String, String> = when {

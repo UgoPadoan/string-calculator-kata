@@ -41,6 +41,11 @@ class AppTest {
     }
 
     @Test
+    fun testIgnoreBigNumbers() {
+         assertEquals(2, add("//;\n2;1001"))
+    }
+
+    @Test
     fun testReadUserDefinedDelimiter() {
         assertEquals(Pair("1;2", ";"), "//;\n1;2".readUserDefinedDelimiter())
         assertEquals(Pair("1:2", ":"), "//:\n1:2".readUserDefinedDelimiter())
