@@ -1,6 +1,18 @@
 # String Calculator Kata
 The following is a TDD Kata, an exercise in coding, refactoring and test-first, that you should apply daily for at least 15-30 minutes.
 
+## Compile (on Linux)
+``` bash
+  cd kotlin
+  ./gradlew build
+```
+
+## Run tests (on Linux)
+``` bash
+  cd kotlin
+  ./gradlew test
+```
+
 ## Before you start
 * Try not to read ahead.
 * Do one task at a time. The trick is to learn to work incrementally.
