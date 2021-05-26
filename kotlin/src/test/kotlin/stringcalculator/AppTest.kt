@@ -19,4 +19,9 @@ class AppTest {
     fun testAddWithMultipleNumbers() {
         assert(add("1,2") == 3)
     }
+
+    @Test
+    fun testAddWithMultipleNumbersJoinedByNewLinesAndComas() {
+        assert(add("1\n2,3") == 6)
+    }
 }
