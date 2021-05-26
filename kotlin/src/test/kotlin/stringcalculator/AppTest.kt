@@ -3,8 +3,6 @@ package stringcalculator
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertThrows
-// import org.junit.Test.assertFailsWith
-
 import org.junit.Test
 
 class AppTest {
