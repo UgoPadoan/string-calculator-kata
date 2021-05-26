@@ -8,6 +8,7 @@ fun add(s: String): Int =
   .readUserDefinedDelimiter()
   .addDefaultDelimiters()
   .parseNumbers()
+  .checkNotNegative()
   .sum()
 
 fun String.readUserDefinedDelimiter(): Pair<String, String> = when {
@@ -27,5 +28,11 @@ fun String.parseNumbers(vararg delimiters: String): List<Int> = when (this) {
     this
     .split(*delimiters)
     .map(String::toInt)
+}
+
+fun List<Int>.checkNotNegative(): List<Int> {
+  val negatives =  this.filter { it < 0}
+  if (negatives.size > 0) throw NegativesNotAllowed(negatives)
+  return this
 }
 

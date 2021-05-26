@@ -2,6 +2,8 @@ package stringcalculator
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertArrayEquals
+import org.junit.Assert.assertThrows
+// import org.junit.Test.assertFailsWith
 
 import org.junit.Test
 
@@ -33,6 +35,12 @@ class AppTest {
     }
 
     @Test
+    fun testThowExceptionOnNegativeNumbers() {
+        val exception = assertThrows(NegativesNotAllowed::class.java) { add("1,4,-1")}
+        assertEquals("negatives not allowed: [-1]", exception.message)
+    }
+
+    @Test
     fun testReadUserDefinedDelimiter() {
         assertEquals(Pair("1;2", ";"), "//;\n1;2".readUserDefinedDelimiter())
         assertEquals(Pair("1:2", ":"), "//:\n1:2".readUserDefinedDelimiter())
@@ -51,5 +59,12 @@ class AppTest {
 
         assertEquals("1;3", Pair("1;3", ":").addDefaultDelimiters().first)
         assertArrayEquals(delimiters + ":", Pair("1;3", ":").addDefaultDelimiters().second)
+    }
+
+    @Test
+    fun testCheckNotNegatives() {
+      assertEquals(listOf(1, 2), listOf(1, 2).checkNotNegative())
+      val exception = assertThrows(NegativesNotAllowed::class.java) { listOf(1, -2).checkNotNegative()}
+      assertEquals("negatives not allowed: [-2]", exception.message)
     }
 }
