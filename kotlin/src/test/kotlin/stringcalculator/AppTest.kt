@@ -37,7 +37,7 @@ class AppTest {
     @Test
     fun testThowExceptionOnNegativeNumbers() {
         val exception = assertThrows(NegativesNotAllowed::class.java) { add("1,4,-1")}
-        assertEquals("negatives not allowed: [-1]", exception.message)
+        assertEquals("negatives not allowed: -1", exception.message)
     }
 
     @Test
@@ -69,7 +69,7 @@ class AppTest {
     @Test
     fun testCheckNotNegatives() {
       assertEquals(listOf(1, 2), listOf(1, 2).checkNotNegative())
-      val exception = assertThrows(NegativesNotAllowed::class.java) { listOf(1, -2).checkNotNegative()}
-      assertEquals("negatives not allowed: [-2]", exception.message)
+      val exception = assertThrows(NegativesNotAllowed::class.java) { listOf(1, -2, -3).checkNotNegative()}
+      assertEquals("negatives not allowed: -2, -3", exception.message)
     }
 }
