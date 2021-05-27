@@ -45,29 +45,29 @@ class AppTest {
 
     @Test
     fun testReadUserDefinedDelimiter() {
-        assertEquals(Pair("1;2", ";"), "//;\n1;2".readUserDefinedDelimiter())
-        assertEquals(Pair("1:2", ":"), "//:\n1:2".readUserDefinedDelimiter())
+        assertEquals(Pair("1;2", ";"), readUserDefinedDelimiter("//;\n1;2"))
+        assertEquals(Pair("1:2", ":"), readUserDefinedDelimiter("//:\n1:2"))
     }
 
     @Test
     fun testPairParseNumbers() {
-        assertEquals(listOf(1, 2), Pair("1;2", arrayOf(";")).parseNumbers())
-        assertEquals(listOf(1, 3), Pair("1:3", arrayOf(":")).parseNumbers())
+        assertEquals(listOf(1, 2), parseNumbers(Pair("1;2", arrayOf(";"))))
+        assertEquals(listOf(1, 3), parseNumbers(Pair("1:3", arrayOf(":"))))
     }
 
     @Test
     fun testMergeUserAndDefaultDelimiters() {
-        assertEquals("1;2", Pair("1;2", ";").addDefaultDelimiters().first)
-        assertArrayEquals(delimiters + ";", Pair("1;2", ";").addDefaultDelimiters().second)
+        assertEquals("1;2", addDefaultDelimiters(Pair("1;2", ";")).first)
+        assertArrayEquals(delimiters + ";", addDefaultDelimiters(Pair("1;2", ";")).second)
 
-        assertEquals("1;3", Pair("1;3", ":").addDefaultDelimiters().first)
-        assertArrayEquals(delimiters + ":", Pair("1;3", ":").addDefaultDelimiters().second)
+        assertEquals("1;3", addDefaultDelimiters(Pair("1;3", ":")).first)
+        assertArrayEquals(delimiters + ":", addDefaultDelimiters(Pair("1;3", ":")).second)
     }
 
     @Test
-    fun testCheckNotNegatives() {
-      assertEquals(listOf(1, 2), listOf(1, 2).checkNotNegative())
-      val exception = assertThrows(NegativesNotAllowed::class.java) { listOf(1, -2, -3).checkNotNegative()}
+    fun testassertNotNegatives() {
+      assertEquals(listOf(1, 2), assertNotNegative(listOf(1, 2)))
+      val exception = assertThrows(NegativesNotAllowed::class.java) { assertNotNegative(listOf(1, -2, -3))}
       assertEquals("negatives not allowed: -2, -3", exception.message)
     }
 }

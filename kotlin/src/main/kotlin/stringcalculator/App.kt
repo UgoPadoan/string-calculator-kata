@@ -6,35 +6,35 @@ val delimiters = arrayOf(defaultDelimiter, "\n")
 
 fun add(s: String): Int = 
   s
-  .readUserDefinedDelimiter()
-  .addDefaultDelimiters()
-  .parseNumbers()
-  .checkNotNegative()
+  .let { readUserDefinedDelimiter( it ) }
+  .let { addDefaultDelimiters(it) }
+  .let { parseNumbers(it) }
+  .let { assertNotNegative(it) }
   .filter { it <= maxIntAllowed}
   .sum()
 
-fun String.readUserDefinedDelimiter(): Pair<String, String> = when {
-  this.startsWith("//") -> Pair(this.drop(4), this.substring(2,3))
-  else -> Pair(this, defaultDelimiter)
+fun readUserDefinedDelimiter(s: String): Pair<String, String> = when {
+  s.startsWith("//") -> Pair(s.drop(4), s.substring(2,3))
+  else -> Pair(s, defaultDelimiter)
 }
 
-fun Pair<String, String>.addDefaultDelimiters(): Pair<String, Array<String>> =
-  Pair(this.first, delimiters + this.second)
+fun addDefaultDelimiters(p: Pair<String, String>): Pair<String, Array<String>> =
+  Pair(p.first, delimiters + p.second)
 
-fun Pair<String, Array<String>>.parseNumbers(): List<Int> =
-  this.first.parseNumbers(*this.second)
+fun parseNumbers(p: Pair<String, Array<String>>): List<Int> =
+  parseNumbers(p.first, *p.second)
 
-fun String.parseNumbers(vararg delimiters: String): List<Int> = when (this) {
+fun parseNumbers(s: String, vararg delimiters: String): List<Int> = when (s) {
   "" -> listOf(0)
   else -> 
-    this
+    s
     .split(*delimiters)
     .map(String::toInt)
 }
 
-fun List<Int>.checkNotNegative(): List<Int> {
-  val negatives =  this.filter { it < 0}
+fun assertNotNegative(ns: List<Int>): List<Int> {
+  val negatives =  ns.filter { it < 0}
   if (negatives.size > 0) throw NegativesNotAllowed(negatives)
-  return this
+  return ns
 }
 
